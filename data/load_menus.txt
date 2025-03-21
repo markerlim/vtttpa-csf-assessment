@@ -1,0 +1,5 @@
+# TODO: Task 1.1
+Assume import mongo file from root folder
+mongoimport -d restaurant -c menus --type=json --file=data/menus.json --jsonArray
+
+mongoimport --host shortline.proxy.rlwy.net --port 11362 -d restaurant -c menus --type=json --file=data/menus.json --jsonArray --username mongo --password <password> --authenticationDatabase admin
