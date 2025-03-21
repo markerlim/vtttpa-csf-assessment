@@ -1,6 +1,5 @@
 -- IMPORTANT: DO NOT CHANGE THE GIVEN SCHEMA UNLESS YOU HAVE A GOOD REASON
 -- IF YOU DO CHANGE IT WRITE THE JUSTIFICATION IN A COMMENT ABOVE THE CHANGE
-
 drop database if exists restaurant;
 
 create database restaurant;
@@ -8,10 +7,10 @@ create database restaurant;
 use restaurant;
 
 create table customers (
-  username varchar(64) not null,
+  username varchar(64) PRIMARY KEY,
   password varchar(128) not null
 );
-
+-- In order to create the constraint from place_order table, username must be a primary key
 insert into customers(username, password) values
   ('fred', sha2('fred', 224)),
   ('barney', sha2('barney', 224)),
@@ -26,5 +25,6 @@ create table place_orders(
   `payment_id` varchar(128) not null,
   `order_date` date not null,
   `total` float not null check(total <= 999999.99),
-  `username` varchar(64) not null
+  `username` varchar(64) not null,
+  FOREIGN KEY (`username`) REFERENCES customers(username) ON DELETE CASCADE
 )

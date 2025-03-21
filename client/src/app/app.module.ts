@@ -9,13 +9,21 @@ import { MenuComponent } from './components/menu.component';
 import { PlaceOrderComponent } from './components/place-order.component';
 
 import { ConfirmationComponent } from './components/confirmation.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: '', component: MenuComponent },
+  { path: 'placeorder', component: PlaceOrderComponent },
+  { path: 'confirmation', component: ConfirmationComponent },
+]
 
 @NgModule({
   declarations: [
     AppComponent, MenuComponent, PlaceOrderComponent, ConfirmationComponent
   ],
   imports: [
-    BrowserModule, ReactiveFormsModule
+    BrowserModule, ReactiveFormsModule,RouterModule.forRoot(appRoutes, { useHash: true })
+
   ],
   providers: [ provideHttpClient() ],
   bootstrap: [AppComponent]
